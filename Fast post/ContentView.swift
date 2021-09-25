@@ -7,45 +7,49 @@
 
 import SwiftUI
 
+let height:CGFloat = 600
+
+
 
 struct ContentView: View {
     var body: some View {
-        ZStack{
-            BackgroundHero()
+        HStack(alignment:.top, spacing:0){
+            ChoosePanelContainer()
+            MainPanelContainer()
             
-            HStack(alignment:.top, spacing:0){
-                ZStack(alignment:.top){
-                    LinearGradient(gradient: Gradient(colors: [Color("white3"), Color("white4")]), startPoint: .topLeading, endPoint: .bottomTrailing).opacity(1.0)
-                }.frame(width: 310).opacity(1.0).overlay(
-                  
-                    ChoosePanel()
-                    
-                )
-                
-                MainPanel()
-                
-            }.frame(maxWidth: .infinity, maxHeight: .infinity).cornerRadius(17)
-            
-        }.frame(width: 960, height: 600, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).opacity(0.86).cornerRadius(17)
+            }.frame(maxWidth: 960, maxHeight: height).cornerRadius(17).overlay(
+            RoundedRectangle(cornerRadius: 17).stroke(Color(.white), lineWidth: 1.2).frame(maxWidth: 958, maxHeight: 598)
+        ).opacity(0.95)
     }
 }
 
 
 
-struct BackgroundHero:View{
+struct ChoosePanelContainer:View{
     var body: some View{
-        Text("").frame(maxWidth: .infinity, maxHeight: .infinity).overlay(
-            RoundedRectangle(cornerRadius: 17).fill(LinearGradient(gradient: Gradient(colors: [Color("blue"), Color("blue-dark")]), startPoint: .topLeading, endPoint: .bottomTrailing))
-        )
+        ZStack(alignment:.top){
+            LinearGradient(gradient: Gradient(colors: [Color("white3"), Color("white4")]), startPoint: .topLeading, endPoint: .bottomTrailing).opacity(1.0)
+        }.frame(width: 310).opacity(1.0).overlay(
+          
+            ZStack{
+                Image("Ellipse").resizable().scaledToFit().frame(width: 350, height: 350).offset(x: 150.0, y: 150.0).blur(radius: 11.0).opacity(0.5)
                 
-        Image("Ellipse").offset(x: -410.0, y: 250.0).blur(radius: 9.0)
-        Image("Ellipse").offset(x: -110.0, y: -300.0).blur(radius: 19.0)
-        Image("Ellipse1").offset(x: 500, y: -300.0).blur(radius: 13.0)
-        
-        RoundedRectangle(cornerRadius: 17).fill(LinearGradient(gradient: Gradient(colors: [Color("white"), Color("white1")]), startPoint: .topTrailing, endPoint: .bottomLeading)).blur(radius: 1.0)
-        
-        RoundedRectangle(cornerRadius: 17).strokeBorder(Color.white, lineWidth: 1.5)
-        
+                ChoosePanel()
+
+            }
+            
+        )
+    }
+}
+
+
+struct MainPanelContainer:View{
+    var body: some View{
+        ZStack{
+            BackgroundHero()
+            Image("Ellipse1").resizable().scaledToFit().frame(width: 250, height: 250).offset(x: 100, y: -200.0).opacity(1)
+                MainPanel()
+            }
     }
 }
 
@@ -56,25 +60,51 @@ struct MainPanel:View{
                 
                 Text("Drag a picture").foregroundColor(Color("font")).font(.custom("Poppins-Regular", size: 13)).padding(.leading, 58).padding(.top, 38)
                 
-                ZStack(alignment: .center){
-                    RoundedRectangle(cornerRadius: 17).strokeBorder(Color.white.opacity(0.7), lineWidth: 1.5).background(RoundedRectangle(cornerRadius:17).fill(LinearGradient(gradient: Gradient(colors: [Color("white3"), Color("white4")]), startPoint: .topLeading, endPoint: .bottomTrailing))).frame(width: 100, height: 130)
-                    Image("equis")
-                }.padding(.leading, 60).padding(.top, 10)
+                AddButton()
                 
                 Text("Description").foregroundColor(Color("font")).font(.custom("Poppins-Regular", size: 13)).padding(.leading, 58).padding(.top, 10)
                 
-                RoundedRectangle(cornerRadius: 17).strokeBorder(Color.white.opacity(0.7), lineWidth: 1.2).background(RoundedRectangle(cornerRadius:17).fill(LinearGradient(gradient: Gradient(colors: [Color("white3"), Color("white4")]), startPoint: .topLeading, endPoint: .bottomTrailing))).frame(width: 420, height: 100).padding(.leading, 60).padding(.top, 10)
+                DescriptionButton()
                 
-            }.frame(width: 650, height: 600, alignment: .topLeading)
+            }.frame(width: 650, height: height, alignment: .topLeading)
         }
+}
+
+struct BackgroundHero:View{
+    var body: some View{
+        Text("").frame(maxWidth: 650, maxHeight: height).overlay(
+            LinearGradient(gradient: Gradient(colors: [Color("blue-dark"), Color("blue-dark"), Color("blue")]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        )
+                
+       LinearGradient(gradient: Gradient(colors: [Color("white"), Color("white1")]), startPoint: .topTrailing, endPoint: .bottomLeading)
+        
+    }
 }
 
 
 
+struct AddButton:View{
+    var body: some View{
+        ZStack(alignment: .center){
+            RoundedRectangle(cornerRadius: 17).strokeBorder(Color.white.opacity(0.7), lineWidth: 1.2).background(RoundedRectangle(cornerRadius:17).fill(LinearGradient(gradient: Gradient(colors: [Color("white"), Color("white1")]), startPoint: .topLeading, endPoint: .bottomTrailing))).frame(width: 100, height: 130)
+            Image("equis")
+        }.padding(.leading, 60).padding(.top, 10)
+    }
+}
+
+
+struct DescriptionButton:View{
+    var body: some View{
+        RoundedRectangle(cornerRadius: 17).strokeBorder(Color.white.opacity(0.7), lineWidth: 1.2).background(RoundedRectangle(cornerRadius:17).fill(LinearGradient(gradient: Gradient(colors: [Color("white"), Color("white1")]), startPoint: .topLeading, endPoint: .bottomTrailing))).frame(width: 420, height: 100).padding(.leading, 60).padding(.top, 10)
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Group {
+            ContentView()
+        }
     }
 }
 
@@ -95,7 +125,7 @@ struct ChoosePanel:View{
             }.padding(.top, 50)
           
             Spacer()
-        }.frame(height:600).cornerRadius(17).border(Color.white.opacity(0.75), width: 1.2)
+        }.frame(height:height)
     }
 }
 
@@ -110,11 +140,12 @@ struct OptionLabel: View{
     var paddingTop:CGFloat = 0
     
     var body: some View{
-        HStack(spacing:16){
+        HStack(spacing:12){
             Image(imageName).resizable().frame(width: 33, height: 33)
-            Text(text).foregroundColor(Color("font")).font(.custom("Poppins-Regular", size: 13))
+            Text(text).foregroundColor(Color("font")).font(.custom("Poppins-Medium", size: 14))
             Spacer()
             Toggle("", isOn: $isOn).toggleStyle(SwitchToggleStyle())
         }.frame(width:205).padding(.top, self.paddingTop)
     }
 }
+
