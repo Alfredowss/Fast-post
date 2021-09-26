@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		9A0DD32D26FFC9A200DF8855 /* SwitchLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DD32C26FFC9A200DF8855 /* SwitchLabel.swift */; };
 		9A0DD33226FFCABF00DF8855 /* TextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DD33126FFCABF00DF8855 /* TextLabel.swift */; };
+		9A0DD336270024A400DF8855 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DD335270024A400DF8855 /* CustomButton.swift */; };
+		9A0DD33C27003FE300DF8855 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DD33B27003FE300DF8855 /* AddButton.swift */; };
+		9A0DD33F2700401200DF8855 /* DescriptionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0DD33E2700401200DF8855 /* DescriptionButton.swift */; };
 		9A1B738526FBB5D1009E763F /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A8F37E026FAAE870082BE00 /* Info.plist */; };
 		9A8F37D526FAAE840082BE00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F37D426FAAE840082BE00 /* AppDelegate.swift */; };
 		9A8F37D726FAAE840082BE00 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8F37D626FAAE840082BE00 /* ContentView.swift */; };
@@ -21,6 +24,9 @@
 /* Begin PBXFileReference section */
 		9A0DD32C26FFC9A200DF8855 /* SwitchLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchLabel.swift; sourceTree = "<group>"; };
 		9A0DD33126FFCABF00DF8855 /* TextLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextLabel.swift; sourceTree = "<group>"; };
+		9A0DD335270024A400DF8855 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		9A0DD33B27003FE300DF8855 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
+		9A0DD33E2700401200DF8855 /* DescriptionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionButton.swift; sourceTree = "<group>"; };
 		9A8F37D126FAAE840082BE00 /* Fast post.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fast post.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8F37D426FAAE840082BE00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A8F37D626FAAE840082BE00 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,15 +52,27 @@
 		9A0DD32B26FFC97100DF8855 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				9A0DD32C26FFC9A200DF8855 /* SwitchLabel.swift */,
 				9A0DD33126FFCABF00DF8855 /* TextLabel.swift */,
+				9A0DD335270024A400DF8855 /* CustomButton.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		9A0DD3392700399200DF8855 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				9A0DD32C26FFC9A200DF8855 /* SwitchLabel.swift */,
+				9A8F37D626FAAE840082BE00 /* ContentView.swift */,
+				9A0DD33B27003FE300DF8855 /* AddButton.swift */,
+				9A0DD33E2700401200DF8855 /* DescriptionButton.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		9A7C53CF26FEBB6800E8F2AB /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9A0DD3392700399200DF8855 /* Main */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -89,7 +107,6 @@
 				9A0DD32B26FFC97100DF8855 /* Utils */,
 				9A7C53CF26FEBB6800E8F2AB /* Views */,
 				9A8F37D426FAAE840082BE00 /* AppDelegate.swift */,
-				9A8F37D626FAAE840082BE00 /* ContentView.swift */,
 				9AF4CA6926FB334500188A0C /* Poppins */,
 				9A8F37D826FAAE870082BE00 /* Assets.xcassets */,
 				9A8F37DD26FAAE870082BE00 /* Main.storyboard */,
@@ -180,10 +197,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A0DD33F2700401200DF8855 /* DescriptionButton.swift in Sources */,
 				9A8F37D726FAAE840082BE00 /* ContentView.swift in Sources */,
 				9A0DD32D26FFC9A200DF8855 /* SwitchLabel.swift in Sources */,
 				9A8F37D526FAAE840082BE00 /* AppDelegate.swift in Sources */,
+				9A0DD33C27003FE300DF8855 /* AddButton.swift in Sources */,
 				9A0DD33226FFCABF00DF8855 /* TextLabel.swift in Sources */,
+				9A0DD336270024A400DF8855 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

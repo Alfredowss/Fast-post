@@ -19,7 +19,7 @@ struct ContentView: View {
             
             }.frame(maxWidth: 960, maxHeight: height).cornerRadius(17).overlay(
             RoundedRectangle(cornerRadius: 17).stroke(Color(.white), lineWidth: 1.2).frame(maxWidth: 958, maxHeight: 598)
-        ).opacity(0.95)
+            ).opacity(0.95)
     }
 }
 
@@ -55,46 +55,54 @@ struct MainPanelContainer:View{
 
 struct MainPanel:View{
     
-    @State var popIsActive:Bool = false
-    
     var body: some View{
             VStack(alignment: .leading){
                 HStack(alignment: .bottom){
                     TextLabel(content: "What would you like share?", type: .Regular, size: 20, color: .black).padding(.top, 50).padding(.leading, 50)
                     Spacer()
-                    Button(action: {
-                        popIsActive.toggle()
-                    }, label: {
-                        Image("paint-brush").resizable().frame(width: 30, height: 30)
-                    }).popover(isPresented: $popIsActive, arrowEdge: .bottom, content: {
-                        VStack{
-                            HStack(spacing: 10){
-                                Image("paint-brush").resizable().frame(width: 20, height: 20)
-                                Text("Color-name")
-                            }
-                            HStack(spacing: 10){
-                                Image("paint-brush").resizable().frame(width: 20, height: 20)
-                                Text("Color-name")
-                            }
-                            HStack(spacing: 10){
-                                Image("paint-brush").resizable().frame(width: 20, height: 20)
-                                Text("Color-name")
-                            }
-                        }.padding(10)
-                    }).foregroundColor(.black).buttonStyle(PlainButtonStyle())
+                    PopOverButton()
                 }.frame(maxWidth:600, alignment: .leading)
                 
                 TextLabel(content: "Drag a picture", type: .Regular, size: 13).padding(.leading, 58).padding(.top, 38)
-                
                 AddButton()
-                
-                
                 TextLabel(content: "Description", type: .Regular, size: 13).padding(.leading, 58).padding(.top, 10)
                 
                 DescriptionButton()
                 
             }.frame(width: 650, height: height, alignment: .topLeading)
         }
+}
+
+struct PopOverButton: View{
+    @State var popIsActive:Bool = false
+
+    var body: some View{
+        Button(action: {
+            popIsActive.toggle()
+        }, label: {
+            Image("paint-brush").resizable().frame(width: 21, height: 21)
+        }).popover(isPresented: $popIsActive, arrowEdge: .bottom, content: {
+            VStack{
+                PopOverLabel()
+                PopOverLabel()
+                PopOverLabel()
+            }.padding(10)
+        }).foregroundColor(.black).buttonStyle(CustomButton()).animation(.easeOut(duration: 0.2))
+    }
+}
+
+struct PopOverLabel: View{
+    var nameColor:String?
+    
+    var body: some View{
+        HStack(spacing:4){
+            Color(.black)
+                .frame(width: 20, height: 20)
+                .clipShape(Circle())
+            Spacer()
+            Text("Color-name")
+        }
+    }
 }
 
 struct BackgroundHero:View{
@@ -107,25 +115,6 @@ struct BackgroundHero:View{
         
     }
 }
-
-
-
-struct AddButton:View{
-    var body: some View{
-        ZStack(alignment: .center){
-            RoundedRectangle(cornerRadius: 17).strokeBorder(Color.white.opacity(0.7), lineWidth: 1.2).background(RoundedRectangle(cornerRadius:17).fill(LinearGradient(gradient: Gradient(colors: [Color("white"), Color("white1")]), startPoint: .topLeading, endPoint: .bottomTrailing))).frame(width: 100, height: 130)
-            Image("equis")
-        }.padding(.leading, 60).padding(.top, 10)
-    }
-}
-
-
-struct DescriptionButton:View{
-    var body: some View{
-        RoundedRectangle(cornerRadius: 17).strokeBorder(Color.white.opacity(0.7), lineWidth: 1.2).background(RoundedRectangle(cornerRadius:17).fill(LinearGradient(gradient: Gradient(colors: [Color("white"), Color("white1")]), startPoint: .topLeading, endPoint: .bottomTrailing))).frame(width: 420, height: 100).padding(.leading, 60).padding(.top, 10)
-    }
-}
-
 
 
 
