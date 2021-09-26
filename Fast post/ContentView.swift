@@ -49,20 +49,47 @@ struct MainPanelContainer:View{
             BackgroundHero()
             Image("Ellipse1").resizable().scaledToFit().frame(width: 250, height: 250).offset(x: 100, y: -200.0).opacity(1)
                 MainPanel()
-            }
+        }
     }
 }
 
 struct MainPanel:View{
+    
+    @State var popIsActive:Bool = false
+    
     var body: some View{
             VStack(alignment: .leading){
-                Text("What would you like share?").foregroundColor(Color(.black)).font(.custom("Poppins-Regular",size: 20)).padding(.top, 50).padding(.leading, 50)
+                HStack(alignment: .bottom){
+                    TextLabel(content: "What would you like share?", type: .Regular, size: 20, color: .black).padding(.top, 50).padding(.leading, 50)
+                    Spacer()
+                    Button(action: {
+                        popIsActive.toggle()
+                    }, label: {
+                        Image("paint-brush").resizable().frame(width: 30, height: 30)
+                    }).popover(isPresented: $popIsActive, arrowEdge: .bottom, content: {
+                        VStack{
+                            HStack(spacing: 10){
+                                Image("paint-brush").resizable().frame(width: 20, height: 20)
+                                Text("Color-name")
+                            }
+                            HStack(spacing: 10){
+                                Image("paint-brush").resizable().frame(width: 20, height: 20)
+                                Text("Color-name")
+                            }
+                            HStack(spacing: 10){
+                                Image("paint-brush").resizable().frame(width: 20, height: 20)
+                                Text("Color-name")
+                            }
+                        }.padding(10)
+                    }).foregroundColor(.black).buttonStyle(PlainButtonStyle())
+                }.frame(maxWidth:600, alignment: .leading)
                 
-                Text("Drag a picture").foregroundColor(Color("font")).font(.custom("Poppins-Regular", size: 13)).padding(.leading, 58).padding(.top, 38)
+                TextLabel(content: "Drag a picture", type: .Regular, size: 13).padding(.leading, 58).padding(.top, 38)
                 
                 AddButton()
                 
-                Text("Description").foregroundColor(Color("font")).font(.custom("Poppins-Regular", size: 13)).padding(.leading, 58).padding(.top, 10)
+                
+                TextLabel(content: "Description", type: .Regular, size: 13).padding(.leading, 58).padding(.top, 10)
                 
                 DescriptionButton()
                 
@@ -100,13 +127,6 @@ struct DescriptionButton:View{
 }
 
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ContentView()
-        }
-    }
-}
 
 
 struct ChoosePanel:View{
@@ -114,13 +134,14 @@ struct ChoosePanel:View{
         VStack{
             VStack{
                 Image("user").resizable().aspectRatio(contentMode: .fill).frame(width:80, height: 93).clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                Text("Alfredo G.G").tracking(0.7).padding(.top, 5).foregroundColor(.black).font(.custom("Poppins-Medium", size: 17))
+                
+                TextLabel(content: "Alfredo G.G", type: .Medium, size: 17, color: .black, tracking:0.7)
             
                 VStack(alignment:.leading){
-                    OptionLabel(imageName: "facebook", text: "Facebook")
-                    OptionLabel(imageName: "twitter", text: "Twitter", paddingTop: 24)
-                    OptionLabel(imageName: "instagram", text: "Instagram", paddingTop: 24)
-                    OptionLabel(imageName: "linkedin", text: "Linkedln", paddingTop: 24)
+                    SwitchLabel(imageName: "facebook", text: "Facebook")
+                    SwitchLabel(imageName: "twitter", text: "Twitter", paddingTop: 24)
+                    SwitchLabel(imageName: "instagram", text: "Instagram", paddingTop: 24)
+                    SwitchLabel(imageName: "linkedin", text: "Linkedln", paddingTop: 24)
                 }.padding(.top, 20).frame(width:310)
             }.padding(.top, 50)
           
@@ -131,21 +152,10 @@ struct ChoosePanel:View{
 
 
 
-struct OptionLabel: View{
-    
-    @State var isOn = false
-    
-    var imageName:String
-    var text:String
-    var paddingTop:CGFloat = 0
-    
-    var body: some View{
-        HStack(spacing:12){
-            Image(imageName).resizable().frame(width: 33, height: 33)
-            Text(text).foregroundColor(Color("font")).font(.custom("Poppins-Medium", size: 14))
-            Spacer()
-            Toggle("", isOn: $isOn).toggleStyle(SwitchToggleStyle())
-        }.frame(width:205).padding(.top, self.paddingTop)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ContentView()
+        }
     }
 }
-
