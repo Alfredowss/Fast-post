@@ -29,14 +29,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.contentView = NSHostingView(rootView: contentView)
         window.makeKeyAndOrderFront(nil)
         window.isOpaque = false
-        window.backgroundColor = .clear
-        window!.standardWindowButton(NSWindow.ButtonType.closeButton)?.isHidden = true
+        window.backgroundColor = NSColor(red: 0, green: 0, blue: 0, alpha: 0)
+        //window!.standardWindowButton(NSWindow.ButtonType.closeButton)?.isHidden = true
         window!.standardWindowButton(NSWindow.ButtonType.miniaturizeButton)?.isHidden = true
         window!.standardWindowButton(NSWindow.ButtonType.zoomButton
         )?.isHidden = true
         window.titleVisibility = NSWindow.TitleVisibility.hidden
         window.titlebarAppearsTransparent = true;
-        
+        window.isMovableByWindowBackground = true
+        window.hasShadow = true
     }
     
     
